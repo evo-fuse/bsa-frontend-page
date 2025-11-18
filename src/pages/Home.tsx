@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import CountdownTimer from '../components/CountdownTimer'
 import SlideShow from '../components/SlideShow'
 import { HiShieldCheck, HiCog, HiGlobe, HiCode } from 'react-icons/hi'
-import { FaBrain, FaIndustry } from 'react-icons/fa'
+import { FaBrain } from 'react-icons/fa'
 // Exchange logos
 import binanceLogo from '../assets/icons/binance.png'
 import ethereumLogo from '../assets/icons/ethereum.png'
@@ -13,11 +13,6 @@ import googleLogo from '../assets/icons/google.png'
 import geminiLogo from '../assets/icons/gemini.png'
 import telegramLogo from '../assets/icons/telegram.png'
 // Partner/Technology logos
-import coinStatsLogo from '../assets/icons/coinstats.png'
-import googleAnalyticsLogo from '../assets/icons/google-analytics.png'
-import gpayLogo from '../assets/icons/gpay.png'
-import mastercardLogo from '../assets/icons/mastercard.png'
-import visaLogo from '../assets/icons/visa.png'
 
 // Custom Tooltip Component for Recharts
 const CustomTooltip = ({ active, payload }: any) => {
