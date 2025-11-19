@@ -61,55 +61,13 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader 
         title="Creating a more intelligent, secure, and decentralized future"
         subtitle="BSA redistributes the power and value of the internet to its users, by building a network of open source protocols that provide unified liquidity, unlimited scalability and AI-powered intelligence for builders."
         height="396px"
       />
       <div className="container mx-auto max-w-7xl">
-
-        {/* Our Journey Timeline Section */}
-        <div className="mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Our Journey</h2>
-          
-          <div className="relative">
-            {/* Timeline Container */}
-            <div className="relative overflow-x-auto pb-8">
-              <div className="flex flex-row gap-8 md:gap-12 min-w-max px-4">
-                {milestones.map((milestone, index) => (
-                  <div key={index} className="flex flex-col items-start min-w-[280px] md:min-w-[320px]">
-                    {/* Date/Year - Large faded text */}
-                    <div className="text-[120px] md:text-[150px] font-bold text-white/10 leading-none mb-4">
-                      {milestone.year}
-                    </div>
-                    
-                    {/* Event Card - Dark blue box */}
-                    <div className="bg-[rgb(3,100,200)] rounded-xl p-6 w-full shadow-lg relative">
-            {/* Badge - positioned at top-left corner, 3/4 outside card */}
-            <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
-              <span className="text-white font-bold text-lg">{index + 1}</span>
-            </div>
-                      {/* Icon in bottom-right */}
-                      <div className="absolute bottom-4 right-4 text-white/60">
-                        <HiTrendingUp className="text-2xl" />
-                      </div>
-                      {/* Content */}
-                      <div className="mt-8">
-                        <div className="text-sm text-white/80 mb-2 font-medium">{milestone.date}</div>
-                        <h3 className="text-xl font-bold text-white uppercase mb-3">{milestone.title}</h3>
-                        <p className="text-white/90 text-sm leading-relaxed">{milestone.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Timeline Line (optional) */}
-            <div className="hidden md:block absolute top-[60px] left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500/20 via-primary-500/40 to-primary-500/20"></div>
-          </div>
-        </div>
 
         {/* Our Beliefs Section */}
         <div className="mb-24">

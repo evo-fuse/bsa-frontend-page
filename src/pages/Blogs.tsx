@@ -136,7 +136,7 @@ const Blogs = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader height="396px" />
 
       <div className="container mx-auto max-w-7xl px-6 relative z-10">

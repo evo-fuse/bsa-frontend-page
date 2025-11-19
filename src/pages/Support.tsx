@@ -64,7 +64,7 @@ const Support = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader 
         title="Support & FAQs"
         subtitle="Find answers to common questions and get the help you need"
