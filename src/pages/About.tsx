@@ -2,45 +2,6 @@ import PageHeader from '../components/PageHeader'
 import { HiTrendingUp } from 'react-icons/hi'
 
 const About = () => {
-  const milestones = [
-    {
-      year: "2023",
-      date: "Q1 2023",
-      title: "BSA Network Founded",
-      description: "BSA Network is founded with a vision to revolutionize blockchain through AI integration."
-    },
-    {
-      year: "2023",
-      date: "Aug 2023",
-      title: "Token Launch",
-      description: "BSA token launches on major exchanges, marking the beginning of our ecosystem."
-    },
-    {
-      year: "2026",
-      date: "Jan 2026",
-      title: "Mainnet Launch",
-      description: "BSA mainnet launches with AI-powered smart contracts and intelligent consensus mechanism."
-    },
-    {
-      year: "2026",
-      date: "Jun 2026",
-      title: "AI Integration Complete",
-      description: "Full AI integration completed, enabling decentralized machine learning and adaptive protocols."
-    },
-    {
-      year: "2026",
-      date: "Oct 2026",
-      title: "Ecosystem Expansion",
-      description: "Major partnerships established, expanding BSA's reach across DeFi, NFTs, and enterprise solutions."
-    },
-    {
-      year: "2025",
-      date: "Jan 2025",
-      title: "Global Adoption",
-      description: "BSA achieves global recognition with 10K+ dApps and 1M+ smart contracts deployed."
-    }
-  ];
-
   const beliefs = [
     {
       title: "People deserve an equitable future",
