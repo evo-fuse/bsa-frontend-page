@@ -82,7 +82,7 @@ const Tokenomics = () => {
   }, [])
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader 
         title="Tokenomics & Distribution"
         subtitle="Transparent token distribution and economic model designed for long-term sustainability"
@@ -230,7 +230,7 @@ const Tokenomics = () => {
 
         {/* Token Utility */}
         <div className="mb-16">
-          <h2 className="text-3xl font-semibold mb-8 text-white text-center">Token Utility</h2>
+          <h2 className="text-3xl font-semibold mb-8 text-[rgb(3,100,200)] text-center">Token Utility</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative">
               {/* Badge */}
@@ -304,4 +304,3 @@ const Tokenomics = () => {
 }
 
 export default Tokenomics
-
