@@ -7,67 +7,76 @@ interface TimeUnitProps {
 }
 
 const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
-  // Calculate percentage based on remaining value (clamped between 0 and 100)
+  // Calculate percentage based on elapsed time (inverted: as value decreases, percentage increases)
+  // When value = maxValue, percentage = 0% (empty)
+  // When value = 0, percentage = 100% (full)
   const percentage = useMemo(() => {
-    return Math.max(0, Math.min(100, (value / maxValue) * 100))
+    const elapsed = maxValue - value
+    return Math.max(0, Math.min(100, (elapsed / maxValue) * 100))
   }, [value, maxValue])
   
-  const size = 180
+  const [animatedPercentage, setAnimatedPercentage] = useState(percentage)
+
+  // Animate percentage changes smoothly
+  useEffect(() => {
+    setAnimatedPercentage(percentage)
+  }, [percentage])
+  
+  const size = 270
   const center = size / 2
-  const radius = 70
-  const strokeWidth = 10
+  const radius = 112.5
+  const strokeWidth = 18
   const innerRadius = radius - strokeWidth / 2
   
-  // Calculate circumference and dash offset for progress ring
+  // Calculate circumference and dash offset for progress ring using animated percentage
   const circumference = useMemo(() => 2 * Math.PI * innerRadius, [innerRadius])
   const strokeDashoffset = useMemo(() => {
-    const filledLength = (percentage / 100) * circumference
+    const filledLength = (animatedPercentage / 100) * circumference
     return circumference - filledLength
-  }, [percentage, circumference])
+  }, [animatedPercentage, circumference])
 
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
-      {/* SVG for circular progress ring */}
+      {/* SVG for circular progress ring - positioned as outer ring */}
       <svg 
-        className="absolute inset-0 pointer-events-none transform -rotate-90"
+        className="absolute inset-0 pointer-events-none"
         width={size}
         height={size}
-        style={{ overflow: 'visible' }}
+        style={{ overflow: 'visible', transform: 'rotate(-90deg)' }}
       >
         <defs>
+          {/* Bright cyan-blue gradient for filled portion */}
           <linearGradient id={`gradient-${label}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(0, 148, 255, 1)" stopOpacity="1" />
-            <stop offset="50%" stopColor="rgba(0, 148, 255, 0.95)" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="rgba(0, 148, 255, 0.8)" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#00d4ff" stopOpacity="1" />
+            <stop offset="50%" stopColor="#00b8e6" stopOpacity="1" />
+            <stop offset="100%" stopColor="#0099cc" stopOpacity="1" />
           </linearGradient>
-          <filter id={`glow-${label}`}>
-            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+          {/* Strong neon glow filter - multiple blur layers for intense glow */}
+          <filter id={`glow-strong-${label}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur1"/>
+            <feGaussianBlur stdDeviation="8" result="coloredBlur2"/>
+            <feGaussianBlur stdDeviation="12" result="coloredBlur3"/>
             <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          <filter id={`glow-strong-${label}`}>
-            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="coloredBlur3"/>
+              <feMergeNode in="coloredBlur2"/>
+              <feMergeNode in="coloredBlur1"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
         </defs>
         
-        {/* Background circle (unfilled portion - dimmer) */}
+        {/* Background circle (unfilled portion - very dark, almost black) */}
         <circle
           cx={center}
           cy={center}
           r={innerRadius}
           fill="none"
-          stroke="rgba(0, 148, 255, 0.2)"
+          stroke="rgba(20, 30, 45, 0.0)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
         
-        {/* Progress circle (filled portion) - animated with smooth transitions */}
+        {/* Progress circle (filled portion) - bright glowing cyan-blue with smooth animation */}
         <circle
           key={`progress-${label}-${value}`}
           cx={center}
@@ -81,54 +90,55 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
           strokeDashoffset={strokeDashoffset}
           filter={`url(#glow-strong-${label})`}
           style={{
-            transition: 'stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: 'stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
             transformOrigin: `${center}px ${center}px`,
           }}
         >
-          {/* Animate the glow intensity for pulsing effect */}
+          {/* Animate the glow intensity for pulsing neon effect */}
           <animate
             attributeName="opacity"
-            values="0.95;1;0.95"
+            values="0.85;1;0.85"
             dur="2s"
             repeatCount="indefinite"
           />
         </circle>
       </svg>
 
-      {/* Circular Container */}
+      {/* Inner Container - very dark, almost black background */}
       <div 
-        className="relative rounded-full flex flex-col items-center justify-center"
+        className="relative rounded-full flex flex-col items-center justify-center z-10"
         style={{
-          width: size - 20,
-          height: size - 20,
-          background: 'rgba(15, 30, 60, 0.95)',
+          width: size - (strokeWidth * 2) - 4,
+          height: size - (strokeWidth * 2) - 4,
+          background: 'rgba(10, 15, 25, 0.0)',
           boxShadow: `
-            0 0 20px rgba(0, 148, 255, 0.4),
-            inset 0 0 30px rgba(0, 148, 255, 0.1)
+            inset 0 0 20px rgba(0, 0, 0, 0.0),
+            0 0 30px rgba(0, 212, 255, 0.2)
           `,
-          margin: '10px',
+          margin: `${strokeWidth + 2}px`,
         }}
       >
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center">
-          {/* Number */}
+          {/* Number - bright glowing cyan-blue */}
           <div 
-            className="text-5xl md:text-6xl font-bold mb-2 leading-none"
+            className="text-7xl md:text-8xl font-bold mb-3 leading-none"
             style={{
-              color: '#ffffff',
-              textShadow: '0 0 15px rgba(0, 148, 255, 0.9), 0 0 30px rgba(0, 148, 255, 0.5), 0 0 45px rgba(0, 148, 255, 0.3)',
+              color: '#00d4ff',
+              textShadow: '0 0 30px rgba(0, 212, 255, 1), 0 0 60px rgba(0, 212, 255, 0.9), 0 0 90px rgba(0, 212, 255, 0.6)',
               fontFamily: 'system-ui, -apple-system, sans-serif',
+              transition: 'all 0.3s ease',
             }}
           >
             {String(value).padStart(2, '0')}
           </div>
           
-          {/* Label */}
+          {/* Label - lighter grey with subtle cyan glow */}
           <div 
-            className="text-xs md:text-sm uppercase tracking-widest font-semibold"
+            className="text-sm md:text-base uppercase tracking-widest font-semibold"
             style={{
-              color: '#ffffff',
-              textShadow: '0 0 8px rgba(0, 148, 255, 0.7), 0 0 15px rgba(0, 148, 255, 0.4)',
+              color: 'rgba(200, 220, 240, 0.8)',
+              textShadow: '0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3)',
               letterSpacing: '0.15em',
             }}
           >
