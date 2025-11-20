@@ -2,7 +2,7 @@ import { useState } from 'react'
 import bsaLogo from '../assets/BSA.png'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
-import { HiTrendingUp } from 'react-icons/hi'
+import blogsImage from '../assets/pages/blogs.jpg'
 
 const Blogs = () => {
   const [activeTab, setActiveTab] = useState('Entries')
@@ -138,7 +138,7 @@ const Blogs = () => {
 
   return (
     <div className="min-h-screen pb-20 bg-white">
-      <PageHeader height="396px" />
+      <PageHeader height="396px" backgroundImage={blogsImage} />
 
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-7xl px-6 relative z-10">
@@ -204,14 +204,10 @@ const Blogs = () => {
         </div>
 
         {/* Subscription Section */}
-          <div className="bg-[rgb(3,100,200)] rounded-xl p-8 mb-12 shadow-lg relative">
+          <div className="bg-[rgb(3,100,200)] p-8 mb-12 shadow-lg relative">
           {/* Badge - positioned at top-left corner, 3/4 outside card */}
           <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
             <span className="text-white font-bold text-lg">1</span>
-          </div>
-          {/* Icon in bottom-right */}
-          <div className="absolute bottom-4 right-4 text-white/60">
-            <HiTrendingUp className="text-2xl" />
           </div>
           {/* Content */}
           <div className="mt-8">
@@ -239,7 +235,7 @@ const Blogs = () => {
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-transparent border-2 border-[rgb(3,100,200)] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer relative"
+              className="bg-transparent border-2 border-[rgb(3,100,200)] overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer relative"
             >
               {/* Thumbnail */}
               <div className={`${post.thumbnail.bgColor} h-48 relative p-6 flex flex-col justify-between overflow-hidden backdrop-blur-sm`}>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { HiUsers, HiChatAlt2, HiCog, HiTrendingUp, HiGlobe, HiLightningBolt, HiSparkles } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import roadmapImage from '../assets/pages/roadmap.jpg'
 
 interface RoadmapItemProps {
   milestone: {
@@ -141,7 +142,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
         {/* Sidebar - Always visible, enhanced shadow on hover */}
         <div className="flex-shrink-0 w-[800px] max-h-[320px]">
           <div 
-            className={`bg-white border-2 rounded-xl p-6 transition-all duration-500 ease-in-out h-full relative overflow-hidden ${
+            className={`bg-white border-2 p-6 transition-all duration-500 ease-in-out h-full relative overflow-hidden ${
               isLeft ? 'ml-4' : 'mr-4'
             } ${isHovered ? 'shadow-2xl translate-y-[-4px]' : 'shadow-lg translate-y-0'}`}
             style={{
@@ -346,6 +347,7 @@ const Roadmap = () => {
         title="Development Roadmap"
         subtitle="Our journey towards building the future of AI-powered blockchain networks"
         height="396px"
+        backgroundImage={roadmapImage}
       />
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-7xl px-6">

@@ -1,6 +1,6 @@
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
-import { HiTrendingUp } from 'react-icons/hi'
+import aboutUsImage from '../assets/pages/about_us.jpg'
 
 const About = () => {
   const beliefs = [
@@ -28,6 +28,7 @@ const About = () => {
         title="Creating a more intelligent, secure, and decentralized future"
         subtitle="BSA redistributes the power and value of the internet to its users, by building a network of open source protocols that provide unified liquidity, unlimited scalability and AI-powered intelligence for builders."
         height="396px"
+        backgroundImage={aboutUsImage}
       />
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-7xl">
@@ -37,15 +38,11 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Our Beliefs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {beliefs.map((belief, index) => (
-              <div key={index} className={`bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg relative animate-slide-up ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}>
+              <div key={index} className={`bg-[rgb(3,100,200)] p-8 shadow-lg relative animate-slide-up ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}>
             {/* Badge - positioned at top-left corner, 3/4 outside card */}
             <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
               <span className="text-white font-bold text-lg">{index + 1}</span>
             </div>
-                {/* Icon in bottom-right */}
-                <div className="absolute bottom-4 right-4 text-white/60">
-                  <HiTrendingUp className="text-2xl" />
-                </div>
                 {/* Content */}
                 <div className="mt-8">
                   <h3 className="text-2xl font-bold mb-4 text-white uppercase">{belief.title}</h3>
@@ -60,14 +57,10 @@ const About = () => {
         <div className="mb-24">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">BSA At A Glance</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-8 text-center shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-8 text-center shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">1</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -75,14 +68,10 @@ const About = () => {
                 <div className="text-white/90 text-sm md:text-base">Countries represented</div>
               </div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-8 text-center shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-8 text-center shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">2</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -90,14 +79,10 @@ const About = () => {
                 <div className="text-white/90 text-sm md:text-base">First</div>
               </div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-8 text-center shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-8 text-center shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">3</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -105,14 +90,10 @@ const About = () => {
                 <div className="text-white/90 text-sm md:text-base">dApps Scaling</div>
               </div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-8 text-center shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-8 text-center shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">4</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -125,14 +106,10 @@ const About = () => {
 
         {/* Additional Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg relative">
+          <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg relative">
             {/* Badge */}
             <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
               <span className="text-white font-bold text-lg">5</span>
-            </div>
-            {/* Icon in bottom-right */}
-            <div className="absolute bottom-4 right-4 text-white/60">
-              <HiTrendingUp className="text-2xl" />
             </div>
             {/* Content */}
             <div className="mt-8">
@@ -140,14 +117,10 @@ const About = () => {
               <div className="text-white/90">Total Supply</div>
             </div>
           </div>
-          <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg relative">
+          <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg relative">
             {/* Badge */}
             <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
               <span className="text-white font-bold text-lg">6</span>
-            </div>
-            {/* Icon in bottom-right */}
-            <div className="absolute bottom-4 right-4 text-white/60">
-              <HiTrendingUp className="text-2xl" />
             </div>
             {/* Content */}
             <div className="mt-8">
@@ -155,14 +128,10 @@ const About = () => {
               <div className="text-white/90">Community Members</div>
             </div>
           </div>
-          <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg relative">
+          <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg relative">
             {/* Badge */}
             <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
               <span className="text-white font-bold text-lg">7</span>
-            </div>
-            {/* Icon in bottom-right */}
-            <div className="absolute bottom-4 right-4 text-white/60">
-              <HiTrendingUp className="text-2xl" />
             </div>
             {/* Content */}
             <div className="mt-8">

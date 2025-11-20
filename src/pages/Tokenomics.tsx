@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
-import { HiLockClosed, HiLightningBolt, HiTrendingUp } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
+import tokenomicsImage from '../assets/pages/tokenmics.jpg'
 
 const Tokenomics = () => {
   const [isVisible, setIsVisible] = useState(false)
   const chartRef = useRef<HTMLDivElement>(null)
+  
   const tokenDistribution = [
     { name: 'Pre-Sale & Pool', value: 30, color: 'rgba(3, 100, 200, 0.85)' },
     { name: 'Liquidity Pool', value: 25, color: 'rgba(3, 100, 200, 0.70)' },
@@ -42,7 +43,7 @@ const Tokenomics = () => {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white border-2 border-primary-500 rounded-lg p-4 shadow-lg">
+        <div className="bg-white border-2 border-primary-500 p-4 shadow-lg">
           <p className="font-semibold text-gray-900 mb-1">{payload[0].name}</p>
           <p className="text-[rgb(3,100,200)] font-bold text-lg">{payload[0].value}%</p>
         </div>
@@ -82,12 +83,14 @@ const Tokenomics = () => {
     }
   }, [])
 
+
   return (
     <div className="min-h-screen pb-20 bg-white">
       <PageHeader 
         title="Tokenomics & Distribution"
         subtitle="Transparent token distribution and economic model designed for long-term sustainability"
         height="396px"
+        backgroundImage={tokenomicsImage}
       />
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-6xl">
@@ -97,15 +100,11 @@ const Tokenomics = () => {
           {tokenDetails.map((detail, index) => (
             <div
               key={index}
-              className={`bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative animate-scale-in ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}
+              className={`bg-[rgb(3,100,200)] p-6 shadow-lg relative animate-scale-in ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}
             >
               {/* Badge - positioned at top-left corner, 3/4 outside card */}
               <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
                 <span className="text-white font-bold text-lg">{index + 1}</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -119,7 +118,7 @@ const Tokenomics = () => {
         {/* Distribution Chart */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-center">
           {/* Left Group - First 3 bars */}
-          <div className="bg-transparent rounded-xl p-8">
+          <div className="bg-transparent p-8">
             <div className="space-y-6">
               {tokenDistribution.slice(0, 3).map((item, index) => {
                 const total = tokenDistribution.reduce((sum, i) => sum + i.value, 0)
@@ -132,7 +131,7 @@ const Tokenomics = () => {
                     </div>
                     <div className="w-full bg-gray-200 h-4 rounded-full overflow-hidden drop-shadow-light">
                       <div
-                        className="h-full transition-all duration-1000 rounded-full"
+                        className="h-full rounded-full"
                         style={{ 
                           width: `${percentage}%`,
                           backgroundColor: item.color,
@@ -147,7 +146,7 @@ const Tokenomics = () => {
           </div>
 
           {/* Center - Pie Chart Visualization */}
-          <div className="bg-transparent rounded-xl p-8">
+          <div className="bg-transparent p-8">
             <h2 className="text-2xl font-semibold mb-6 text-[rgb(3,100,200)] text-center uppercase">Token Distribution</h2>
             <div 
               ref={chartRef}
@@ -202,7 +201,7 @@ const Tokenomics = () => {
           </div>
 
           {/* Right Group - Last 3 bars */}
-          <div className="bg-transparent rounded-xl p-8">
+          <div className="bg-transparent p-8">
             <div className="space-y-6">
               {tokenDistribution.slice(3, 6).map((item, index) => {
                 const total = tokenDistribution.reduce((sum, i) => sum + i.value, 0)
@@ -215,7 +214,7 @@ const Tokenomics = () => {
                     </div>
                     <div className="w-full bg-gray-200 h-4 rounded-full overflow-hidden drop-shadow-light">
                       <div
-                        className="h-full transition-all duration-1000 rounded-full"
+                        className="h-full rounded-full"
                         style={{ 
                           width: `${percentage}%`,
                           backgroundColor: item.color,
@@ -234,14 +233,10 @@ const Tokenomics = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-semibold mb-8 text-[rgb(3,100,200)] text-center">Token Utility</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-6 shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">1</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiLockClosed className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -251,14 +246,10 @@ const Tokenomics = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-6 shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">2</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiTrendingUp className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">
@@ -268,14 +259,10 @@ const Tokenomics = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative">
+            <div className="bg-[rgb(3,100,200)] p-6 shadow-lg relative">
               {/* Badge */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-2 border-white flex items-center justify-center">
                 <span className="text-white font-bold text-lg">3</span>
-              </div>
-              {/* Icon in bottom-right */}
-              <div className="absolute bottom-4 right-4 text-white/60">
-                <HiLightningBolt className="text-2xl" />
               </div>
               {/* Content */}
               <div className="mt-8">

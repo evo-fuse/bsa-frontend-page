@@ -85,22 +85,22 @@ const Home = () => {
             AI-Chain Protocol is rewriting the rules of crypto
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2 text-glow">50K+</div>
               <div className="text-white/90 text-sm">Holders and Counting</div>
               <div className="text-white/80 text-xs mt-2">Growing daily</div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2 text-glow">$2.5M+</div>
               <div className="text-white/90 text-sm">Raised</div>
               <div className="text-white/80 text-xs mt-2">Presale ongoing</div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2 text-glow">25K+</div>
               <div className="text-white/90 text-sm">Community Members</div>
               <div className="text-white/80 text-xs mt-2">Across 80+ countries</div>
             </div>
-            <div className="bg-[rgb(3,100,200)] rounded-xl p-6 text-center shadow-lg">
+            <div className="bg-[rgb(3,100,200)] p-6 text-center shadow-lg">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2 text-glow">99.9%</div>
               <div className="text-white/90 text-sm">Uptime</div>
               <div className="text-white/80 text-xs mt-2">Network reliability</div>
@@ -169,7 +169,7 @@ const Home = () => {
             {/* Left - Large Vertical Rectangle */}
             <div className="lg:col-span-1 lg:row-span-2">
               <div
-                className="h-full bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg hover-lift"
+                className="h-full bg-[rgb(3,100,200)] p-8 shadow-lg hover-lift"
               >
                 <div className="flex flex-col items-center justify-center h-full">
                   <div className="flex justify-center mb-4 text-white drop-shadow-light">
@@ -184,7 +184,7 @@ const Home = () => {
             {/* Top Right - Wide Horizontal Rectangle */}
             <div className="lg:col-span-3">
               <div
-                className="bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg hover-lift"
+                className="bg-[rgb(3,100,200)] p-8 shadow-lg hover-lift"
               >
                 <div className="flex items-center gap-6">
                   <div className="flex-shrink-0">
@@ -201,7 +201,7 @@ const Home = () => {
             {/* Bottom Right - Three Smaller Rectangles */}
             <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div
-                className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg hover-lift"
+                className="bg-[rgb(3,100,200)] p-6 shadow-lg hover-lift"
               >
                 <div className="flex flex-col items-center">
                   <div className="flex justify-center mb-4 text-white drop-shadow-light">
@@ -213,7 +213,7 @@ const Home = () => {
               </div>
 
               <div
-                className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg hover-lift"
+                className="bg-[rgb(3,100,200)] p-6 shadow-lg hover-lift"
               >
                 <div className="flex flex-col items-center">
                   <div className="flex justify-center mb-4 text-white drop-shadow-light">
@@ -225,7 +225,7 @@ const Home = () => {
               </div>
 
               <div
-                className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg hover-lift"
+                className="bg-[rgb(3,100,200)] p-6 shadow-lg hover-lift"
               >
                 <div className="flex flex-col items-center">
                   <div className="flex justify-center mb-4 text-white drop-shadow-light">
