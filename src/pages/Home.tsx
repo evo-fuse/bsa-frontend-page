@@ -41,10 +41,9 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Token Presale Timer Section */}
-      <AnimatedSection animation="fadeIn" delay={200}>
-        <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
-          <div className="container mx-auto max-w-7xl relative z-10 w-full">
-            <div className="flex flex-col items-center gap-8">
+      <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+        <div className="container mx-auto max-w-7xl relative z-10 w-full">
+          <div className="flex flex-col items-center gap-8">
             {/* Top - Raised Amount */}
             <div className="bg-white/20 border-2 border-white p-6 glow-cyan border-pulse relative w-full max-w-md">
               <div className="text-center">
@@ -73,8 +72,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        </section>
-      </AnimatedSection>
+      </section>
 
       {/* Stats Section - The Numbers Don't Lie */}
       <AnimatedSection animation="slideUp" delay={100}>

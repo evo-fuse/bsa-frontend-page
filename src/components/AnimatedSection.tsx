@@ -18,6 +18,18 @@ const AnimatedSection = ({
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Check if element is already visible on mount
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect()
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0
+      
+      if (isInView) {
+        setTimeout(() => {
+          setIsVisible(true)
+        }, delay)
+      }
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,7 +41,7 @@ const AnimatedSection = ({
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '50px' }
     )
 
     if (sectionRef.current) {

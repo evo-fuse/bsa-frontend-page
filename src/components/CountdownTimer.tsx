@@ -65,13 +65,13 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
           </filter>
         </defs>
         
-        {/* Background circle (unfilled portion - very dark, almost black) */}
+        {/* Background circle (unfilled portion - darker blue) */}
         <circle
           cx={center}
           cy={center}
           r={innerRadius}
           fill="none"
-          stroke="rgba(20, 30, 45, 0.0)"
+          stroke="rgba(255, 255, 255, 0.2)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
@@ -104,28 +104,28 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
         </circle>
       </svg>
 
-      {/* Inner Container - very dark, almost black background */}
+      {/* Inner Container - semi-transparent background */}
       <div 
         className="relative rounded-full flex flex-col items-center justify-center z-10"
         style={{
           width: size - (strokeWidth * 2) - 4,
           height: size - (strokeWidth * 2) - 4,
-          background: 'rgba(10, 15, 25, 0.0)',
+          background: 'rgba(255, 255, 255, 0.05)',
           boxShadow: `
-            inset 0 0 20px rgba(0, 0, 0, 0.0),
-            0 0 30px rgba(3, 100, 200, 0.2)
+            inset 0 0 20px rgba(0, 0, 0, 0.3),
+            0 0 30px rgba(3, 100, 200, 0.3)
           `,
           margin: `${strokeWidth + 2}px`,
         }}
       >
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center">
-          {/* Number - bright glowing main blue */}
+          {/* Number - bright white with blue glow for visibility on blue background */}
           <div 
             className="text-7xl md:text-8xl font-bold mb-3 leading-none"
             style={{
-              color: 'rgb(3, 100, 200)',
-              textShadow: '0 0 30px rgba(3, 100, 200, 1), 0 0 60px rgba(3, 100, 200, 0.9), 0 0 90px rgba(3, 100, 200, 0.6)',
+              color: '#ffffff',
+              textShadow: '0 0 20px rgba(3, 100, 200, 1), 0 0 40px rgba(3, 100, 200, 0.8), 0 0 60px rgba(3, 100, 200, 0.5)',
               fontFamily: 'system-ui, -apple-system, sans-serif',
               transition: 'all 0.3s ease',
             }}
@@ -133,12 +133,12 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
             {String(value).padStart(2, '0')}
           </div>
           
-          {/* Label - lighter grey with subtle blue glow */}
+          {/* Label - white with subtle glow */}
           <div 
             className="text-sm md:text-base uppercase tracking-widest font-semibold"
             style={{
-              color: 'rgba(200, 220, 240, 0.8)',
-              textShadow: '0 0 10px rgba(3, 100, 200, 0.5), 0 0 20px rgba(3, 100, 200, 0.3)',
+              color: 'rgba(255, 255, 255, 0.9)',
+              textShadow: '0 0 8px rgba(3, 100, 200, 0.6), 0 0 15px rgba(3, 100, 200, 0.4)',
               letterSpacing: '0.15em',
             }}
           >
