@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { HiUsers, HiChatAlt2, HiCog, HiTrendingUp, HiGlobe, HiLightningBolt, HiSparkles } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
+import roadmapImage from '../assets/pages/roadmap.jpg'
 
 interface RoadmapItemProps {
   milestone: {
@@ -141,7 +143,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
         {/* Sidebar - Always visible, enhanced shadow on hover */}
         <div className="flex-shrink-0 w-[800px] max-h-[320px]">
           <div 
-            className={`bg-white border-2 rounded-xl p-6 transition-all duration-500 ease-in-out h-full relative overflow-hidden ${
+            className={`bg-white border-2 p-6 transition-all duration-500 ease-in-out h-full relative overflow-hidden ${
               isLeft ? 'ml-4' : 'mr-4'
             } ${isHovered ? 'shadow-2xl translate-y-[-4px]' : 'shadow-lg translate-y-0'}`}
             style={{
@@ -183,14 +185,24 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                     {milestone.phase}
                   </span>
                 </div>
-                <h3 
-                  className="text-2xl font-bold mb-3 uppercase"
-                  style={{ 
-                    color: colorWithOpacity,
-                  }}
-                >
-                  {milestone.title}
-                </h3>
+                <div className="relative mb-3">
+                  {/* Gradient background from left to right */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-[rgb(3,100,200)] to-transparent"
+                    style={{
+                      height: '100%',
+                    }}
+                  ></div>
+                  <h3 
+                    className="text-2xl font-bold uppercase relative z-10 px-4 py-2"
+                    style={{ 
+                      color: '#ffffff',
+                      textShadow: '0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2)',
+                    }}
+                  >
+                    {milestone.title}
+                  </h3>
+                </div>
                 {/* Separator Line */}
                 <div 
                   className="h-px mb-4"
@@ -341,16 +353,18 @@ const Roadmap = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader 
         title="Development Roadmap"
         subtitle="Our journey towards building the future of AI-powered blockchain networks"
         height="396px"
+        backgroundImage={roadmapImage}
       />
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-7xl px-6">
         {/* Vertical Layout with Hover Sidebars */}
-        <div className="flex flex-col items-start py-16 space-y-9 md:space-y-12">
+        <div className="flex flex-col items-start py-16 space-y-16 md:space-y-20">
           {milestones.map((milestone, index) => {
             const IconComponent = milestone.icon
   return (

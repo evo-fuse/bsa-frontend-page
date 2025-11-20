@@ -1,7 +1,9 @@
-import { HiMail, HiTrendingUp } from 'react-icons/hi'
+import { HiMail } from 'react-icons/hi'
 import { FaDiscord, FaTwitter, FaTelegram } from 'react-icons/fa'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
+import supportImage from '../assets/pages/customer_support.jpg'
 
 const Support = () => {
   const faqs = [
@@ -65,11 +67,13 @@ const Support = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader 
         title="Support & FAQs"
         subtitle="Find answers to common questions and get the help you need"
         height="396px"
+        backgroundImage={supportImage}
       />
       <AnimatedSection animation="fadeIn">
         <div className="container mx-auto max-w-6xl">
@@ -81,15 +85,11 @@ const Support = () => {
             return (
               <div
                 key={index}
-                className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative"
+                className="bg-[rgb(3,100,200)] p-6 shadow-lg relative"
               >
                 {/* Badge - positioned at top-left corner, 3/4 outside card */}
                 <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
                   <span className="text-white font-bold text-lg">{index + 1}</span>
-                </div>
-                {/* Icon in bottom-right */}
-                <div className="absolute bottom-4 right-4 text-white/60">
-                  <HiTrendingUp className="text-2xl" />
                 </div>
                 {/* Content */}
                 <div className="mt-8 text-center">
@@ -112,15 +112,11 @@ const Support = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative"
+                className="bg-[rgb(3,100,200)] p-6 shadow-lg relative"
               >
                 {/* Badge - positioned at top-left corner, 3/4 outside card */}
                 <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
                   <span className="text-white font-bold text-lg">{index + 1}</span>
-                </div>
-                {/* Icon in bottom-right */}
-                <div className="absolute bottom-4 right-4 text-white/60">
-                  <HiTrendingUp className="text-2xl" />
                 </div>
                 {/* Content */}
                 <div className="mt-8">
@@ -133,11 +129,7 @@ const Support = () => {
         </div>
 
         {/* Contact Form */}
-          <div className="bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg relative">
-          {/* Icon in bottom-right */}
-          <div className="absolute bottom-4 right-4 text-white/60">
-            <HiTrendingUp className="text-2xl" />
-          </div>
+          <div className="bg-[rgb(3,100,200)] p-8 shadow-lg relative">
           {/* Content */}
           <div>
             <h2 className="text-3xl font-bold mb-6 text-white text-center uppercase">Get in Touch</h2>

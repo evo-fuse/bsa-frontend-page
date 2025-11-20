@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import bsaLogo from '../assets/BSA.png'
 
 const Navbar = () => {
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      setIsScrolled(scrollPosition > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const isActive = (path: string) => location.pathname === path
 
@@ -18,7 +29,17 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgb(3,100,200)]/80 backdrop-blur-md border-b border-primary-500/20 drop-shadow-light">
+    <nav 
+      className={`fixed z-50 backdrop-blur-md border-b border-primary-500/20 transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? 'top-0 left-0 right-0 bg-[rgb(3,100,200)]/80' 
+          : 'top-8 left-8 right-8 bg-[rgb(3,100,200)]/50'
+      }`}
+      style={{
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1)',
+        borderRadius: isScrolled ? '0' : '12px',
+      }}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

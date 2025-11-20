@@ -4,15 +4,18 @@ interface PageHeaderProps {
   title?: string
   subtitle?: string
   height?: string
+  backgroundImage?: string
 }
 
-const PageHeader = ({ title, subtitle, height = '396px' }: PageHeaderProps) => {
+const PageHeader = ({ title, subtitle, height = '396px', backgroundImage: customBackgroundImage }: PageHeaderProps) => {
+  const bgImage = customBackgroundImage || backgroundImage
+  
   return (
     <div 
       className="w-full relative mb-16"
       style={{
         height: height,
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
