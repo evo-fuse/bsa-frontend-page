@@ -13,12 +13,12 @@ import googleLogo from '../assets/icons/google.png'
 import geminiLogo from '../assets/icons/gemini.png'
 import telegramLogo from '../assets/icons/telegram.png'
 import aiChainImage from '../assets/ai-chain.png'
+import tokenPresaleImage from '../assets/token-presale.jpg'
 // Partner/Technology logos
 
 const Home = () => {
   return (
     <div className="min-h-screen relative w-full overflow-x-hidden">
-      <LinesAnimation />
       {/* Full Screen Slide Show - Takes up entire viewport */}
       <SlideShow />
       
@@ -43,7 +43,17 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Token Presale Timer Section */}
-      <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+      <section 
+        className="relative py-20 w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center"
+        style={{ 
+          backgroundImage: `url(${tokenPresaleImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay for better content readability */}
+        <div className="absolute inset-0 bg-[rgb(3,100,200)]/80"></div>
         <div className="container mx-auto max-w-7xl relative z-10 w-full">
           <div className="flex flex-col items-center gap-8">
             {/* Top - Raised Amount */}
@@ -79,7 +89,8 @@ const Home = () => {
       {/* Stats Section - The Numbers Don't Lie */}
       <AnimatedSection animation="slideUp" delay={100}>
         <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
-        <div className="container mx-auto max-w-7xl w-full">
+        <LinesAnimation />
+        <div className="container mx-auto max-w-7xl w-full relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[rgb(3,100,200)] text-shadow-glow">
             The Numbers Don't Lie
               </h2>
