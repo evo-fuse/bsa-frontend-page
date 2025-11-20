@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import bsaLogo from '../assets/BSA.png'
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 import { HiTrendingUp } from 'react-icons/hi'
 
 const Blogs = () => {
@@ -136,10 +137,11 @@ const Blogs = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader height="396px" />
 
-      <div className="container mx-auto max-w-7xl px-6 relative z-10">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-7xl px-6 relative z-10">
         {/* Circular Logo and Profile Section */}
         <div className="flex flex-col items-center mb-8 -mt-28 relative z-10">
           {/* Circular Logo */}
@@ -265,25 +267,25 @@ const Blogs = () => {
 
               {/* Content */}
               <div className="p-6">
-                <h2 className="text-lg font-bold text-[#0F1E3C] mb-3 line-clamp-2 uppercase">
+                <h2 className="text-lg font-bold text-[rgb(3,100,200)] mb-3 line-clamp-2 uppercase">
                   {post.title}
                 </h2>
-                <div className="flex items-center gap-2 text-sm text-[#0F1E3C]/80 mb-3">
+                <div className="flex items-center gap-2 text-sm text-[rgb(3,100,200)]/80 mb-3">
                   <span>{post.author}</span>
                   <span>•</span>
                   <span>{post.date}</span>
                 </div>
-                <p className="text-[#0F1E3C]/90 text-sm mb-4 line-clamp-3 leading-relaxed">
+                <p className="text-[rgb(3,100,200)]/90 text-sm mb-4 line-clamp-3 leading-relaxed">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between pt-4 border-t border-[#0F1E3C]/20">
-                  <div className="flex items-center gap-2 text-sm text-[#0F1E3C]/80">
+                <div className="flex items-center justify-between pt-4 border-t border-[rgb(3,100,200)]/20">
+                  <div className="flex items-center gap-2 text-sm text-[rgb(3,100,200)]/80">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg>
                     <span>{post.collected} Collected</span>
                   </div>
-                  <button className="text-[#0F1E3C] hover:text-[#0F1E3C]/80 font-medium text-sm transition-colors border-2 border-[#0F1E3C]/50 px-3 py-1 rounded-lg">
+                  <button className="text-[rgb(3,100,200)] hover:text-[rgb(3,100,200)]/80 font-medium text-sm transition-colors border-2 border-[rgb(3,100,200)]/50 px-3 py-1 rounded-lg">
                     Read More
                   </button>
                 </div>
@@ -291,7 +293,8 @@ const Blogs = () => {
             </article>
           ))}
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }

@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import CountdownTimer from '../components/CountdownTimer'
 import SlideShow from '../components/SlideShow'
+import AnimatedSection from '../components/AnimatedSection'
 import { HiShieldCheck, HiCog, HiGlobe, HiCode } from 'react-icons/hi'
 import { FaBrain } from 'react-icons/fa'
 // Exchange logos
@@ -12,153 +11,8 @@ import trustLogo from '../assets/icons/trust.png'
 import googleLogo from '../assets/icons/google.png'
 import geminiLogo from '../assets/icons/gemini.png'
 import telegramLogo from '../assets/icons/telegram.png'
+import aiChainImage from '../assets/ai-chain.png'
 // Partner/Technology logos
-
-// Custom Tooltip Component for Recharts
-const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const data = payload[0]
-  return (
-      <div className="bg-white/95 border-2 border-white rounded-lg p-4 shadow-2xl backdrop-blur-sm">
-        <p className="text-[rgb(3,100,200)] font-bold text-lg mb-1">{data.name}</p>
-        <p className="text-[rgb(3,100,200)] font-semibold text-base">
-          {data.value}% ({Math.round(data.value * 1000000 / 100)}M tokens)
-        </p>
-      </div>
-    )
-  }
-  return null
-}
-
-// Tokenomics Chart Component with Recharts
-const TokenomicsChart = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const chartRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    if (chartRef.current) {
-      observer.observe(chartRef.current)
-    }
-
-    return () => {
-      if (chartRef.current) {
-        observer.unobserve(chartRef.current)
-      }
-    }
-  }, [])
-
-  const tokenDistribution = [
-    { name: 'Pre-Sale', value: 35, color: 'rgba(3, 100, 200, 0.65)' },
-    { name: 'Liquidity', value: 25, color: 'rgba(3, 100, 200, 0.50)' },
-    { name: 'Team', value: 15, color: 'rgba(3, 100, 200, 0.40)' },
-    { name: 'Marketing', value: 12, color: 'rgba(3, 100, 200, 0.30)' },
-    { name: 'Advisors', value: 8, color: 'rgba(3, 100, 200, 0.20)' },
-    { name: 'Reserve', value: 5, color: 'rgba(3, 100, 200, 0.15)' },
-  ]
-
-  const onPieEnter = (_: any, index: number) => {
-    setActiveIndex(index)
-  }
-
-  const onPieLeave = () => {
-    setActiveIndex(null)
-  }
-
-  return (
-    <div 
-      ref={chartRef}
-      className={`relative w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] flex-shrink-0 transition-all duration-1000 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-      }`}
-    >
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-                    <defs>
-            {tokenDistribution.map((_, index) => (
-              <filter key={`glow-${index}`} id={`glow-${index}`}>
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-            ))}
-                    </defs>
-          <Pie
-            data={tokenDistribution}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={false}
-            outerRadius={280}
-            innerRadius={140}
-            fill="#8884d8"
-            dataKey="value"
-            startAngle={90}
-            endAngle={-270}
-            animationBegin={isVisible ? 0 : undefined}
-            animationDuration={2000}
-            animationEasing="ease-out"
-            onMouseEnter={onPieEnter}
-            onMouseLeave={onPieLeave}
-          >
-            {tokenDistribution.map((entry, index) => (
-              <Cell 
-                key={`cell-${index}`} 
-                fill={entry.color}
-                stroke="rgba(255, 255, 255, 1)"
-                strokeWidth={activeIndex === index ? 6 : 4}
-                style={{
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  filter: activeIndex === index ? `url(#glow-${index})` : undefined,
-                }}
-              />
-            ))}
-          </Pie>
-          <Tooltip content={<CustomTooltip />} />
-        </PieChart>
-      </ResponsiveContainer>
-      {/* Center Circle with Text - Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative">
-          <div 
-            className="rounded-full border-4 border-white"
-                    style={{
-              width: '280px',
-              height: '280px',
-              backgroundColor: 'rgba(3, 100, 200, 0.95)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
-            }}
-          >
-            <div className="text-white text-3xl md:text-4xl font-bold drop-shadow-lg mb-2">
-              Total
-            </div>
-            <div className="text-white text-2xl md:text-3xl drop-shadow-lg">
-              100M
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  )
-}
 
 const Home = () => {
   return (
@@ -167,52 +21,49 @@ const Home = () => {
       <SlideShow />
       
       {/* Content Sections - Positioned after slideshow */}
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-[rgb(3,100,200)]/95 w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl relative z-10">
-          {/* Badge */}
-          <div className="mb-6 text-center">
-
-        </div>
-
-          {/* Introduction and Timer in One Line */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
-            {/* Left - Introduction */}
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-glow leading-tight">
+      {/* About AI-Chain Protocol Section */}
+      <AnimatedSection animation="slideUp">
+        <section className="relative pt-32 pb-20 bg-white w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+          <div className="container mx-auto max-w-7xl relative z-10 w-full">
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[rgb(3,100,200)] text-shadow-glow leading-tight text-center">
                 What is AI-Chain Protocol?
               </h1>
-              <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed">
+              <p className="text-lg md:text-xl text-[rgb(3,100,200)]/80 mb-6 leading-relaxed text-center">
                 AI-Chain Protocol, inspired by Bitcoin and Ethereum, is a state-of-the-art Layer 1 blockchain 
                 that plans to make AI-powered decentralized intelligence accessible for all. With a go-to-market 
                 strategy, our goal is to advance the crypto industry by blending the best of existing blockchain 
                 technologies with groundbreaking speed, flexibility, and innovation.
               </p>
             </div>
+          </div>
+        </section>
+      </AnimatedSection>
 
-            {/* Right - Presale Timer */}
-            <div className="flex flex-col items-center lg:items-end">
-              <div className="text-white/80 mb-4">
-                {/* <p className="mb-4 text-center lg:text-right font-semibold text-lg">Pre-Sale Ends in:</p> */}
-                <div className="flex justify-center lg:justify-end overflow-visible">
-                  <CountdownTimer />
-              </div>
-            </div>
-              </div>
-            </div>
-
-          {/* Stats and Buttons */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left - Raised Amount */}
-            <div className="bg-white/20 border-2 border-white p-6 glow-cyan border-pulse relative">
+      {/* Token Presale Timer Section */}
+      <AnimatedSection animation="fadeIn" delay={200}>
+        <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+          <div className="container mx-auto max-w-7xl relative z-10 w-full">
+            <div className="flex flex-col items-center gap-8">
+            {/* Top - Raised Amount */}
+            <div className="bg-white/20 border-2 border-white p-6 glow-cyan border-pulse relative w-full max-w-md">
               <div className="text-center">
                 <div className="text-2xl md:text-3xl font-bold text-white mb-2">$2.5M+ Million Raised</div>
-                <p className="text-white/80 text-sm">Join the presale and see your contribution grow</p>
-                </div>
-                  </div>
+                <p className="text-white/90 text-sm">Join the presale and see your contribution grow</p>
+              </div>
+            </div>
 
-            {/* Right - Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+            {/* Middle - Presale Timer */}
+            <div className="flex flex-col items-center">
+              <div className="text-white mb-4">
+                <div className="flex justify-center overflow-visible">
+                  <CountdownTimer />
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom - Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-[rgb(3,100,200)] px-8 py-4 text-lg font-bold transition-all duration-300 hover:bg-white/90 glow-cyan hover-lift active:scale-95">
                 Buy Now
               </button>
@@ -222,11 +73,13 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Stats Section - The Numbers Don't Lie */}
-      <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl">
+      <AnimatedSection animation="slideUp" delay={100}>
+        <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+        <div className="container mx-auto max-w-7xl w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[rgb(3,100,200)] text-shadow-glow">
             The Numbers Don't Lie
               </h2>
@@ -259,124 +112,21 @@ const Home = () => {
       </section>
 
       {/* Why Choose AI-Chain Protocol Section */}
-      <section className="py-20 bg-[rgb(3,100,200)]/95 relative w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left - Enhanced 3D Cube with Connected Spheres */}
-            <div className="flex justify-center perspective-2000 order-2 lg:order-1">
-              <div className="relative w-80 h-80">
-                {/* Central 3D Cube */}
-                <div 
-                  className="relative w-64 h-64 mx-auto"
-                  style={{ 
-                    transformStyle: 'preserve-3d',
-                    transform: 'rotateX(25deg) rotateY(-25deg)',
-                  }}
-                >
-                  {/* Front face */}
-                  <div 
-                    className="absolute w-48 h-48 bg-gradient-to-br from-white/40 to-white/30 border-2 border-white glow-cyan left-1/2 top-1/2 backface-hidden"
-                    style={{ 
-                      transform: 'translate(-50%, -50%) translateZ(60px)',
-                    }}
-                  >
-                    <div className="p-4 h-full flex flex-col justify-center items-center text-white">
-                      <div className="text-sm font-semibold mb-2 text-shadow-glow">AI Enhanced</div>
-                      <div className="text-xs text-center">Security</div>
-                    </div>
-                  </div>
-                  {/* Top face */}
-                  <div 
-                    className="absolute w-48 h-48 bg-gradient-to-br from-white/50 to-white/40 border-2 border-white glow-cyan left-1/2 top-1/2 backface-hidden"
-                    style={{ 
-                      transform: 'translate(-50%, -50%) rotateX(90deg) translateZ(60px)',
-                    }}
-                  >
-                    <div className="p-4 h-full flex flex-col justify-center items-center text-white">
-                      <div className="text-sm font-semibold mb-2 text-shadow-glow">AI Engine</div>
-                      <div className="text-xs text-center">Processor</div>
-                    </div>
-                  </div>
-                  {/* Right face */}
-                  <div 
-                    className="absolute w-48 h-48 bg-gradient-to-br from-white/30 to-white/20 border-2 border-white glow-cyan left-1/2 top-1/2 backface-hidden"
-                    style={{ 
-                      transform: 'translate(-50%, -50%) rotateY(90deg) translateZ(60px)',
-                    }}
-                  >
-                    <div className="p-4 h-full flex flex-col justify-center items-center text-white">
-                      <div className="text-sm font-semibold mb-2 text-shadow-glow">Network</div>
-                      <div className="text-xs text-center">Outputs</div>
-                    </div>
-                  </div>
-                  {/* Bottom face */}
-                  <div 
-                    className="absolute w-48 h-48 bg-gradient-to-br from-white/20 to-white/10 border-2 border-white glow-cyan left-1/2 top-1/2 backface-hidden"
-                    style={{ 
-                      transform: 'translate(-50%, -50%) rotateX(-90deg) translateZ(60px)',
-                    }}
-                  >
-                    <div className="p-4 h-full flex flex-col justify-center items-center text-white">
-                      <div className="text-sm font-semibold mb-2 text-shadow-glow">Mechanical</div>
-                      <div className="text-xs text-center">Security</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connected Spheres */}
-                {[
-                  { x: 0, y: 0, label: 'AI Engine\nProcessor', angle: -45 },
-                  { x: 100, y: -50, label: 'Network\nOutputs', angle: 0 },
-                  { x: 0, y: 100, label: 'Mechanical\nSecurity', angle: 45 },
-                  { x: -100, y: -50, label: 'AI Enhanced\nSecurity', angle: 180 },
-                ].map((sphere, i) => (
-                  <div
-                    key={i}
-                    className="absolute"
-                    style={{
-                      left: '50%',
-                      top: '50%',
-                      transform: `translate(calc(-50% + ${sphere.x}px), calc(-50% + ${sphere.y}px))`,
-                    }}
-                  >
-                    {/* Connection Line */}
-                    <svg
-                      className="absolute"
-                      width="200"
-                      height="200"
-                      style={{
-                        left: `${sphere.x > 0 ? -100 : sphere.x < 0 ? 100 : 0}px`,
-                        top: `${sphere.y > 0 ? -100 : sphere.y < 0 ? 100 : 0}px`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    >
-                      <line
-                        x1="100"
-                        y1="100"
-                        x2={100 + sphere.x}
-                        y2={100 + sphere.y}
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        className="text-white/50"
-                      />
-                    </svg>
-                    {/* Sphere */}
-                    <div className="relative">
-                      <div className="w-20 h-20 bg-gradient-to-br from-white/50 to-white/30 border-2 border-white glow-cyan">
-                        <div className="w-full h-full flex flex-col items-center justify-center text-white text-xs font-semibold text-center p-2">
-                          {sphere.label.split('\n').map((line, idx) => (
-                            <div key={idx}>{line}</div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right - Text */}
-            <div className="order-1 lg:order-2">
+      <section 
+        className="py-20 relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center"
+        style={{ 
+          backgroundImage: `url(${aiChainImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-[rgb(3,100,200)]/80"></div>
+        <div className="container mx-auto max-w-7xl relative z-10 w-full">
+          <div className="grid grid-cols-1 gap-16 items-center">
+            {/* Text Content */}
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white text-shadow-glow">
                 Why Choose AI-Chain Protocol?
               </h2>
@@ -404,13 +154,13 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
-
+        </section>
+      </AnimatedSection>
 
       {/* Core Features Section */}
-      <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl">
+      <AnimatedSection animation="fadeIn" delay={200}>
+        <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+        <div className="container mx-auto max-w-7xl w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[rgb(3,100,200)] text-shadow-glow">
             Core Attributes
           </h2>
@@ -490,26 +240,13 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Tokenomics & Statistics Section */}
-      <section className="py-8 bg-[rgb(3,100,200)]/95 relative w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl">
-          <div className="w-full">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-shadow-glow text-center">
-              Tokenomics & Statistics
-              </h2>
-              
-            <div className="flex items-center justify-center overflow-visible">
-              <TokenomicsChart />
-            </div>
-          </div>
-              </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Powered By Section */}
-      <section className="py-20 bg-[rgb(15,30,60)] relative w-full max-w-full overflow-x-hidden">
-        <div className="container mx-auto max-w-7xl">
+      <AnimatedSection animation="slideUp" delay={100}>
+        <section className="py-20 bg-[rgb(3,100,200)] relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+        <div className="container mx-auto max-w-7xl w-full">
           {/* POWERED BY */}
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
@@ -683,7 +420,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   )
 }

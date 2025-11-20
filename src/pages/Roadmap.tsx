@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { HiUsers, HiChatAlt2, HiCog, HiTrendingUp, HiGlobe, HiLightningBolt, HiSparkles } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 
 interface RoadmapItemProps {
   milestone: {
@@ -11,7 +12,6 @@ interface RoadmapItemProps {
     description: string
     details: string[]
     icon: any
-    color: string
   }
   index: number
   IconComponent: any
@@ -20,6 +20,12 @@ interface RoadmapItemProps {
 const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
   const [isHovered, setIsHovered] = useState(false)
   const isLeft = index % 2 === 0 // Even indices (0, 2, 4...) on left, odd (1, 3, 5...) on right
+  
+  // Calculate opacity based on step number (higher step = more transparent)
+  // Step 1: 1.0, Step 2: 0.92, Step 3: 0.84, Step 4: 0.76, Step 5: 0.68, Step 6: 0.60, Step 7: 0.52
+  const opacity = Math.max(0.4, 1.0 - (index * 0.08))
+  const baseColor = 'rgb(3,100,200)'
+  const colorWithOpacity = `rgba(3, 100, 200, ${opacity})`
 
   return (
     <div 
@@ -43,12 +49,12 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                 cy="144"
                 r="136"
                 fill="none"
-                stroke={milestone.color}
+                stroke={baseColor}
                 strokeWidth="16"
                 strokeLinecap="round"
                 strokeDasharray={`${Math.PI * 136} ${Math.PI * 136}`}
                 strokeDashoffset={index % 2 === 0 ? '0' : `${Math.PI * 136}`}
-                opacity="0.3"
+                opacity={opacity * 0.3}
                 transform={index % 2 === 0 ? 'rotate(-90 144 144)' : 'rotate(90 144 144)'}
               />
             </svg>
@@ -63,9 +69,10 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                   : "M 144 8 A 136 136 0 0 0 144 280"
                 }
                 fill="none"
-                stroke={milestone.color}
+                stroke={baseColor}
                 strokeWidth="16"
                 strokeLinecap="round"
+                opacity={opacity}
               />
             </svg>
           </div>
@@ -86,7 +93,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
             <div 
               className="mb-5 transition-all duration-500 ease-in-out"
               style={{ 
-                color: milestone.color,
+                color: colorWithOpacity,
                 transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
               }}
             >
@@ -97,7 +104,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
             <p 
               className="text-sm leading-relaxed text-center font-semibold transition-all duration-500 ease-in-out"
               style={{ 
-                color: milestone.color,
+                color: colorWithOpacity,
                 opacity: isHovered ? 1 : 0.9,
               }}
             >
@@ -122,7 +129,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
             <span 
               className="text-4xl font-bold transition-all duration-500 ease-in-out"
               style={{ 
-                color: milestone.color,
+                color: colorWithOpacity,
                 transform: isHovered ? 'scale(1.1)' : 'scale(1)',
               }}
             >
@@ -138,10 +145,10 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
               isLeft ? 'ml-4' : 'mr-4'
             } ${isHovered ? 'shadow-2xl translate-y-[-4px]' : 'shadow-lg translate-y-0'}`}
             style={{
-              borderColor: isHovered ? milestone.color : 'rgb(3,100,200)',
+              borderColor: isHovered ? colorWithOpacity : baseColor,
               boxShadow: isHovered 
-                ? `0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 2px ${milestone.color}40`
-                : `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px ${milestone.color}20`,
+                ? `0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(3, 100, 200, ${opacity * 0.25})`
+                : `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(3, 100, 200, ${opacity * 0.125})`,
             }}
           >
             {/* Date Tag Ribbon - Top Right Corner */}
@@ -151,10 +158,10 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
               <div 
                 className="absolute top-0 right-0 w-56 h-11 transform rotate-45 translate-x-12 -translate-y-1 flex items-center justify-center shadow-lg transition-all duration-500 ease-in-out"
                 style={{
-                  backgroundColor: milestone.color,
+                  backgroundColor: colorWithOpacity,
                   boxShadow: isHovered 
-                    ? `0 4px 8px ${milestone.color}60`
-                    : `0 2px 4px ${milestone.color}40`,
+                    ? `0 4px 8px rgba(3, 100, 200, ${opacity * 0.375})`
+                    : `0 2px 4px rgba(3, 100, 200, ${opacity * 0.25})`,
                 }}
               >
                 <span 
@@ -170,7 +177,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                   <span 
                     className="text-sm font-semibold uppercase tracking-wider"
                     style={{ 
-                      color: milestone.color,
+                      color: colorWithOpacity,
                     }}
                   >
                     {milestone.phase}
@@ -179,7 +186,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                 <h3 
                   className="text-2xl font-bold mb-3 uppercase"
                   style={{ 
-                    color: milestone.color,
+                    color: colorWithOpacity,
                   }}
                 >
                   {milestone.title}
@@ -188,8 +195,8 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                 <div 
                   className="h-px mb-4"
                   style={{
-                    backgroundColor: milestone.color,
-                    opacity: 0.3,
+                    backgroundColor: baseColor,
+                    opacity: opacity * 0.3,
                   }}
                 />
                 <p className="text-gray-700 leading-relaxed text-sm mb-4">
@@ -211,7 +218,7 @@ const RoadmapItem = ({ milestone, index, IconComponent }: RoadmapItemProps) => {
                       <span 
                         className="mr-2 mt-1 text-lg flex-shrink-0"
                         style={{ 
-                          color: milestone.color,
+                          color: colorWithOpacity,
                         }}
                       >
                         ▸
@@ -246,7 +253,6 @@ const Roadmap = () => {
         'Community building and marketing',
       ],
       icon: HiUsers,
-      color: '#6B7280', // Gray
     },
     {
       phase: 'Phase 2',
@@ -261,7 +267,6 @@ const Roadmap = () => {
         'Partnership announcements',
       ],
       icon: HiChatAlt2,
-      color: '#14B8A6', // Teal/Blue-gray
     },
     {
       phase: 'Phase 3',
@@ -276,7 +281,6 @@ const Roadmap = () => {
         'Governance system launch',
       ],
       icon: HiCog,
-      color: '#06B6D4', // Bright Teal/Cyan
     },
     {
       phase: 'Phase 4',
@@ -291,7 +295,6 @@ const Roadmap = () => {
         'Global expansion initiatives',
       ],
       icon: HiTrendingUp,
-      color: '#84CC16', // Lime Green
     },
     {
       phase: 'Phase 5',
@@ -306,7 +309,6 @@ const Roadmap = () => {
         'Global market penetration',
       ],
       icon: HiGlobe,
-      color: '#3B82F6', // Blue
     },
     {
       phase: 'Phase 6',
@@ -321,7 +323,6 @@ const Roadmap = () => {
         'Enhanced security protocols',
       ],
       icon: HiLightningBolt,
-      color: '#F59E0B', // Amber/Orange
     },
     {
       phase: 'Phase 7',
@@ -336,18 +337,18 @@ const Roadmap = () => {
         'Global network dominance',
       ],
       icon: HiSparkles,
-      color: '#A855F7', // Purple
     },
   ]
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 bg-white">
       <PageHeader 
         title="Development Roadmap"
         subtitle="Our journey towards building the future of AI-powered blockchain networks"
         height="396px"
       />
-      <div className="container mx-auto max-w-7xl px-6">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-7xl px-6">
         {/* Vertical Layout with Hover Sidebars */}
         <div className="flex flex-col items-start py-16 space-y-9 md:space-y-12">
           {milestones.map((milestone, index) => {
@@ -375,7 +376,8 @@ const Roadmap = () => {
             </button>
           </div>
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }
