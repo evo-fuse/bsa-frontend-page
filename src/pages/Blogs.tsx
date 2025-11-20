@@ -2,7 +2,19 @@ import { useState } from 'react'
 import bsaLogo from '../assets/BSA.png'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
 import blogsImage from '../assets/pages/blogs.jpg'
+import blog1 from '../assets/blogs/1.jpg'
+import blog2 from '../assets/blogs/2.jpg'
+import blog3 from '../assets/blogs/3.jpg'
+import blog4 from '../assets/blogs/4.jpg'
+import blog5 from '../assets/blogs/5.jpg'
+import blog6 from '../assets/blogs/6.jpg'
+import blog7 from '../assets/blogs/7.jpg'
+import blog8 from '../assets/blogs/8.jpg'
+import blog9 from '../assets/blogs/9.jpg'
+
+const blogImages = [blog1, blog2, blog3, blog4, blog5, blog6, blog7, blog8, blog9]
 
 const Blogs = () => {
   const [activeTab, setActiveTab] = useState('Entries')
@@ -137,7 +149,8 @@ const Blogs = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader height="396px" backgroundImage={blogsImage} />
 
       <AnimatedSection animation="fadeIn">
@@ -205,10 +218,6 @@ const Blogs = () => {
 
         {/* Subscription Section */}
           <div className="bg-[rgb(3,100,200)] p-8 mb-12 shadow-lg relative">
-          {/* Badge - positioned at top-left corner, 3/4 outside card */}
-          <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
-            <span className="text-white font-bold text-lg">1</span>
-          </div>
           {/* Content */}
           <div className="mt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -235,26 +244,78 @@ const Blogs = () => {
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-transparent border-2 border-[rgb(3,100,200)] overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer relative"
+              className="bg-transparent border-2 border-[rgb(3,100,200)] overflow-hidden transition-all duration-300 cursor-pointer relative group"
+              style={{
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                transition: 'transform 0.15s ease-in-out, box-shadow 0.3s ease-in-out',
+                transform: 'scale(1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.15)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)'
+                e.currentTarget.style.transform = 'scale(1)'
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.97)'
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+              }}
+              onClick={(e) => {
+                e.currentTarget.style.transform = 'scale(0.95)'
+                setTimeout(() => {
+                  e.currentTarget.style.transform = 'scale(1)'
+                }, 150)
+              }}
             >
               {/* Thumbnail */}
-              <div className={`${post.thumbnail.bgColor} h-48 relative p-6 flex flex-col justify-between overflow-hidden backdrop-blur-sm`}>
-                {post.thumbnail.pattern === 'geometric' && (
-                  <div className="absolute inset-0 opacity-30">
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-white/40 rounded-full"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-4 border-white/40 rounded-full"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-4 border-white/40 rounded-full"></div>
-                  </div>
-                )}
+              <div 
+                className="h-48 relative p-6 flex flex-col justify-between overflow-hidden"
+                style={{
+                  backgroundImage: `url(${blogImages[post.id - 1]})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  transition: 'transform 0.5s ease-in-out, background-size 0.5s ease-in-out',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1)'
+                  e.currentTarget.style.backgroundSize = '110%'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)'
+                  e.currentTarget.style.backgroundSize = 'cover'
+                }}
+              >
+                {/* Gradient mask from top on hover */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                ></div>
                 <div className="relative z-10">
-                  <div className="text-xs font-semibold text-white/80 mb-2">BSA AI</div>
+                  <div className="text-xs font-semibold text-white/80 mb-2 drop-shadow-lg">BSA AI</div>
                 </div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-1 text-white">
+                <div className="relative z-10 pl-2 pb-2">
+                  {/* Gradient background under title */}
+                  <div 
+                    className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-r from-[rgb(3,100,200)]/80 via-[rgb(3,100,200)]/40 to-transparent"
+                  ></div>
+                  <h3 
+                    className="text-2xl font-bold mb-1 text-white relative z-10"
+                    style={{
+                      textShadow: '0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2)',
+                    }}
+                  >
                     {post.thumbnail.title}
                   </h3>
                   {post.thumbnail.subtitle && (
-                    <p className="font-medium text-primary-300">
+                    <p 
+                      className="font-medium text-white/90 relative z-10"
+                      style={{
+                        textShadow: '0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2)',
+                      }}
+                    >
                       {post.thumbnail.subtitle}
                     </p>
                   )}

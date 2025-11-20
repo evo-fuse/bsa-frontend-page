@@ -1,19 +1,26 @@
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
 import aboutUsImage from '../assets/pages/about_us.jpg'
+import thumbnail1 from '../assets/thumbnails/1.jpg'
+import thumbnail2 from '../assets/thumbnails/2.jpg'
+import thumbnail3 from '../assets/thumbnails/3.jpg'
+import thumbnail4 from '../assets/thumbnails/4.jpg'
 
 const About = () => {
+  const thumbnails = [thumbnail1, thumbnail2, thumbnail3, thumbnail4]
+  
   const beliefs = [
     {
       title: "People deserve an equitable future",
-      description: "We are committed to building open-source protocols that give anyone, anywhere the power to create value for people everywhere."
+      description: "We are committed to building open-source protocols that give anyone, anywhere the power to create value for people everywhere through decentralized technology."
     },
     {
       title: "The community is our backbone",
-      description: "We are committed to developing a thriving ecosystem by empowering and investing in developers, partners, community, and users."
+      description: "We are committed to developing a thriving ecosystem by empowering and investing in developers, partners, community members, and users worldwide."
     },
     {
-      title: "Blockchain will change the world for good",
+      title: "Blockchain will change the world",
       description: "We are committed to building protocols, programs, and services that will accelerate the mass adoption of blockchain technology to bring more value to people."
     },
     {
@@ -23,7 +30,8 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader 
         title="Creating a more intelligent, secure, and decentralized future"
         subtitle="BSA redistributes the power and value of the internet to its users, by building a network of open source protocols that provide unified liquidity, unlimited scalability and AI-powered intelligence for builders."
@@ -35,18 +43,37 @@ const About = () => {
 
         {/* Our Beliefs Section */}
         <div className="mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Our Beliefs</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-[rgb(3,100,200)]">Our Beliefs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {beliefs.map((belief, index) => (
-              <div key={index} className={`bg-[rgb(3,100,200)] p-8 shadow-lg relative animate-slide-up ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}>
-            {/* Badge - positioned at top-left corner, 3/4 outside card */}
-            <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
-              <span className="text-white font-bold text-lg">{index + 1}</span>
-            </div>
+              <div 
+                key={index} 
+                className={`h-full p-8 shadow-lg relative animate-slide-up flex flex-col ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}
+                style={{
+                  backgroundImage: `url(${thumbnails[index]})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  minHeight: '320px',
+                }}
+              >
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-[rgb(3,100,200)]/80 z-0" style={{ overflow: 'hidden' }}></div>
+                {/* Badge - positioned at top-left corner, 3/4 outside card */}
+                <div 
+                  className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10"
+                  style={{
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2)',
+                  }}
+                >
+                  <span className="text-white font-bold text-lg">{index + 1}</span>
+                </div>
                 {/* Content */}
-                <div className="mt-8">
-                  <h3 className="text-2xl font-bold mb-4 text-white uppercase">{belief.title}</h3>
-                  <p className="text-white/90 leading-relaxed">{belief.description}</p>
+                <div className="mt-8 relative z-10 flex-1 flex flex-col" style={{ overflow: 'hidden' }}>
+                  <h3 className="text-2xl font-bold mb-3 text-white uppercase">{belief.title}</h3>
+                  {/* Separator Line */}
+                  <div className="h-px mb-4 bg-white/30"></div>
+                  <p className="text-white/90 leading-relaxed flex-1">{belief.description}</p>
                 </div>
               </div>
             ))}
@@ -55,7 +82,7 @@ const About = () => {
 
         {/* BSA At A Glance Section */}
         <div className="mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">BSA At A Glance</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-[rgb(3,100,200)]">BSA At A Glance</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-[rgb(3,100,200)] p-8 text-center shadow-lg relative">
               {/* Badge */}

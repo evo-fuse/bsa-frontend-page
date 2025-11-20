@@ -2,6 +2,7 @@ import { HiMail } from 'react-icons/hi'
 import { FaDiscord, FaTwitter, FaTelegram } from 'react-icons/fa'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
 import supportImage from '../assets/pages/customer_support.jpg'
 
 const Support = () => {
@@ -66,7 +67,8 @@ const Support = () => {
   ]
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader 
         title="Support & FAQs"
         subtitle="Find answers to common questions and get the help you need"

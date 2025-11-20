@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import PageHeader from '../components/PageHeader'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import tokenomicsImage from '../assets/pages/tokenmics.jpg'
 
@@ -85,7 +86,8 @@ const Tokenomics = () => {
 
 
   return (
-    <div className="min-h-screen pb-20 bg-white">
+    <div className="min-h-screen pb-20 bg-white relative">
+      <LinesAnimation />
       <PageHeader 
         title="Tokenomics & Distribution"
         subtitle="Transparent token distribution and economic model designed for long-term sustainability"
@@ -116,7 +118,8 @@ const Tokenomics = () => {
         </div>
 
         {/* Distribution Chart */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-center">
+        <div className="bg-white border-2 border-[rgb(3,100,200)] p-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           {/* Left Group - First 3 bars */}
           <div className="bg-transparent p-8">
             <div className="space-y-6">
@@ -226,6 +229,7 @@ const Tokenomics = () => {
                 )
               })}
             </div>
+          </div>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import CountdownTimer from '../components/CountdownTimer'
 import SlideShow from '../components/SlideShow'
 import AnimatedSection from '../components/AnimatedSection'
+import LinesAnimation from '../components/LinesAnimation'
 import { HiShieldCheck, HiCog, HiGlobe, HiCode } from 'react-icons/hi'
 import { FaBrain } from 'react-icons/fa'
 // Exchange logos
@@ -17,6 +18,7 @@ import aiChainImage from '../assets/ai-chain.png'
 const Home = () => {
   return (
     <div className="min-h-screen relative w-full overflow-x-hidden">
+      <LinesAnimation />
       {/* Full Screen Slide Show - Takes up entire viewport */}
       <SlideShow />
       
