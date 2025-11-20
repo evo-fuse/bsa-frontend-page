@@ -83,14 +83,14 @@ const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-4 py-2 transition-all duration-300 ${
                     isActive(link.path)
-                      ? 'text-cyan-400 font-semibold drop-shadow-light'
-                      : 'text-white hover:text-cyan-400'
+                    ? 'text-white font-semibold drop-shadow-light'
+                    : 'text-white/80 hover:text-white'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <button className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-2 font-semibold transition-all duration-300 hover:from-cyan-400 hover:to-cyan-500 drop-shadow-light transform hover:scale-105 w-full text-left">
+              <button className="bg-gradient-to-r from-[rgb(3,100,200)] to-[rgba(3,100,200,0.8)] text-white px-6 py-2 font-semibold transition-all duration-300 hover:from-[rgba(3,100,200,0.9)] hover:to-[rgba(3,100,200,0.7)] drop-shadow-light transform hover:scale-105 w-full text-left">
                 Buy Tokens
               </button>
             </div>

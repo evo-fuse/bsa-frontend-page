@@ -1,4 +1,5 @@
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 import { HiTrendingUp } from 'react-icons/hi'
 
 const About = () => {
@@ -28,14 +29,15 @@ const About = () => {
         subtitle="BSA redistributes the power and value of the internet to its users, by building a network of open source protocols that provide unified liquidity, unlimited scalability and AI-powered intelligence for builders."
         height="396px"
       />
-      <div className="container mx-auto max-w-7xl">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-7xl">
 
         {/* Our Beliefs Section */}
         <div className="mb-24">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Our Beliefs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {beliefs.map((belief, index) => (
-              <div key={index} className="bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg relative">
+              <div key={index} className={`bg-[rgb(3,100,200)] rounded-xl p-8 shadow-lg relative animate-slide-up ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}>
             {/* Badge - positioned at top-left corner, 3/4 outside card */}
             <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
               <span className="text-white font-bold text-lg">{index + 1}</span>
@@ -169,7 +171,8 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }

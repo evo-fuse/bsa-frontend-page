@@ -1,6 +1,7 @@
 import { HiMail, HiTrendingUp } from 'react-icons/hi'
 import { FaDiscord, FaTwitter, FaTelegram } from 'react-icons/fa'
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 
 const Support = () => {
   const faqs = [
@@ -70,7 +71,8 @@ const Support = () => {
         subtitle="Find answers to common questions and get the help you need"
         height="396px"
       />
-      <div className="container mx-auto max-w-6xl">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-6xl">
 
         {/* Contact Methods */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -105,7 +107,7 @@ const Support = () => {
 
         {/* FAQs */}
         <div className="mb-16">
-          <h2 className="text-4xl font-bold mb-8 text-white text-center">Frequently Asked Questions</h2>
+          <h2 className="text-4xl font-bold mb-8 text-[rgb(3,100,200)] text-center">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
@@ -183,7 +185,8 @@ const Support = () => {
             </form>
           </div>
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }

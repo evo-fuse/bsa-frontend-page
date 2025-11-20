@@ -1,18 +1,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { HiLockClosed, HiLightningBolt, HiTrendingUp } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 
 const Tokenomics = () => {
   const [isVisible, setIsVisible] = useState(false)
   const chartRef = useRef<HTMLDivElement>(null)
   const tokenDistribution = [
-    { name: 'Pre-Sale & Pool', value: 30, color: '#1e3a8a' }, // Dark Blue
-    { name: 'Liquidity Pool', value: 25, color: '#06b6d4' }, // Cyan/Light Blue
-    { name: 'Marketing', value: 10, color: '#10b981' }, // Green
-    { name: 'Team & Advisors', value: 15, color: '#ef4444' }, // Red
-    { name: 'Team & Advisors', value: 15, color: '#a855f7' }, // Purple
-    { name: 'Ecosystem Dev', value: 20, color: '#eab308' }, // Yellow
+    { name: 'Pre-Sale & Pool', value: 30, color: 'rgba(3, 100, 200, 0.85)' },
+    { name: 'Liquidity Pool', value: 25, color: 'rgba(3, 100, 200, 0.70)' },
+    { name: 'Marketing', value: 10, color: 'rgba(3, 100, 200, 0.55)' },
+    { name: 'Team & Advisors', value: 15, color: 'rgba(3, 100, 200, 0.65)' },
+    { name: 'Team & Advisors', value: 15, color: 'rgba(3, 100, 200, 0.50)' },
+    { name: 'Ecosystem Dev', value: 20, color: 'rgba(3, 100, 200, 0.75)' },
   ]
 
   // Custom label renderer for pie chart
@@ -88,14 +89,15 @@ const Tokenomics = () => {
         subtitle="Transparent token distribution and economic model designed for long-term sustainability"
         height="396px"
       />
-      <div className="container mx-auto max-w-6xl">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-6xl">
 
         {/* Token Details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {tokenDetails.map((detail, index) => (
             <div
               key={index}
-              className="bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative"
+              className={`bg-[rgb(3,100,200)] rounded-xl p-6 shadow-lg relative animate-scale-in ${index === 0 ? 'animate-delay-100' : index === 1 ? 'animate-delay-200' : index === 2 ? 'animate-delay-300' : 'animate-delay-400'}`}
             >
               {/* Badge - positioned at top-left corner, 3/4 outside card */}
               <div className="absolute -top-5 -left-5 w-10 h-10 bg-[rgb(3,100,200)] rounded-full border-4 border-white flex items-center justify-center z-10">
@@ -134,7 +136,7 @@ const Tokenomics = () => {
                         style={{ 
                           width: `${percentage}%`,
                           backgroundColor: item.color,
-                          boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
+                          boxShadow: `0 2px 4px rgba(3, 100, 200, 0.3)`,
                         }}
                       ></div>
                     </div>
@@ -174,7 +176,7 @@ const Tokenomics = () => {
                     label={renderCustomLabel}
                     outerRadius={140}
                     innerRadius={60}
-                    fill="#8884d8"
+                    fill="rgba(3, 100, 200, 0.5)"
                     dataKey="value"
                     animationBegin={isVisible ? 0 : undefined}
                     animationDuration={1500}
@@ -217,7 +219,7 @@ const Tokenomics = () => {
                         style={{ 
                           width: `${percentage}%`,
                           backgroundColor: item.color,
-                          boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
+                          boxShadow: `0 2px 4px rgba(3, 100, 200, 0.3)`,
                         }}
                       ></div>
                     </div>
@@ -298,7 +300,8 @@ const Tokenomics = () => {
             </button>
           </div>
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }

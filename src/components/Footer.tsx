@@ -35,17 +35,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <Link to="/about" className="text-white/70 hover:text-white transition-colors duration-300">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/tokenomics" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <Link to="/tokenomics" className="text-white/70 hover:text-white transition-colors duration-300">
                   Tokenomics
                 </Link>
               </li>
               <li>
-                <Link to="/roadmap" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <Link to="/roadmap" className="text-white/70 hover:text-white transition-colors duration-300">
                   Roadmap
                 </Link>
               </li>
@@ -57,22 +57,22 @@ const Footer = () => {
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/blogs" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <Link to="/blogs" className="text-white/70 hover:text-white transition-colors duration-300">
                   Blogs
                 </Link>
               </li>
               <li>
-                <Link to="/support" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <Link to="/support" className="text-white/70 hover:text-white transition-colors duration-300">
                   Support
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <a href="#" className="text-white/70 hover:text-white transition-colors duration-300">
                   Whitepaper
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300">
+                <a href="#" className="text-white/70 hover:text-white transition-colors duration-300">
                   Documentation
                 </a>
               </li>
@@ -83,16 +83,16 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Connect</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300 text-2xl">
+              <a href="#" className="text-white/70 hover:text-white transition-colors duration-300 text-2xl">
                 <FaTwitter />
               </a>
-              <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300 text-2xl">
+              <a href="#" className="text-white/70 hover:text-white transition-colors duration-300 text-2xl">
                 <FaDiscord />
               </a>
-              <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300 text-2xl">
+              <a href="#" className="text-white/70 hover:text-white transition-colors duration-300 text-2xl">
                 <FaTelegram />
               </a>
-              <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors duration-300 text-2xl">
+              <a href="#" className="text-white/70 hover:text-white transition-colors duration-300 text-2xl">
                 <HiMail />
               </a>
             </div>

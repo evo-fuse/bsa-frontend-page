@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import CountdownTimer from '../components/CountdownTimer'
 import SlideShow from '../components/SlideShow'
+import AnimatedSection from '../components/AnimatedSection'
 import { HiShieldCheck, HiCog, HiGlobe, HiCode } from 'react-icons/hi'
 import { FaBrain } from 'react-icons/fa'
 // Exchange logos
@@ -105,7 +106,7 @@ const TokenomicsChart = () => {
             label={false}
             outerRadius={280}
             innerRadius={140}
-            fill="#8884d8"
+            fill="rgba(3, 100, 200, 0.5)"
             dataKey="value"
             startAngle={90}
             endAngle={-270}
@@ -169,26 +170,29 @@ const Home = () => {
       
       {/* Content Sections - Positioned after slideshow */}
       {/* About AI-Chain Protocol Section */}
-      <section className="relative pt-32 pb-20 bg-white w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
-        <div className="container mx-auto max-w-7xl relative z-10 w-full">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[rgb(3,100,200)] text-shadow-glow leading-tight text-center">
-              What is AI-Chain Protocol?
-            </h1>
-            <p className="text-lg md:text-xl text-[rgb(3,100,200)]/80 mb-6 leading-relaxed text-center">
-              AI-Chain Protocol, inspired by Bitcoin and Ethereum, is a state-of-the-art Layer 1 blockchain 
-              that plans to make AI-powered decentralized intelligence accessible for all. With a go-to-market 
-              strategy, our goal is to advance the crypto industry by blending the best of existing blockchain 
-              technologies with groundbreaking speed, flexibility, and innovation.
-            </p>
+      <AnimatedSection animation="slideUp">
+        <section className="relative pt-32 pb-20 bg-white w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+          <div className="container mx-auto max-w-7xl relative z-10 w-full">
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[rgb(3,100,200)] text-shadow-glow leading-tight text-center">
+                What is AI-Chain Protocol?
+              </h1>
+              <p className="text-lg md:text-xl text-[rgb(3,100,200)]/80 mb-6 leading-relaxed text-center">
+                AI-Chain Protocol, inspired by Bitcoin and Ethereum, is a state-of-the-art Layer 1 blockchain 
+                that plans to make AI-powered decentralized intelligence accessible for all. With a go-to-market 
+                strategy, our goal is to advance the crypto industry by blending the best of existing blockchain 
+                technologies with groundbreaking speed, flexibility, and innovation.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Token Presale Timer Section */}
-      <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
-        <div className="container mx-auto max-w-7xl relative z-10 w-full">
-          <div className="flex flex-col items-center gap-8">
+      <AnimatedSection animation="fadeIn" delay={200}>
+        <section className="relative py-20 bg-[rgb(3,100,200)] w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+          <div className="container mx-auto max-w-7xl relative z-10 w-full">
+            <div className="flex flex-col items-center gap-8">
             {/* Top - Raised Amount */}
             <div className="bg-white/20 border-2 border-white p-6 glow-cyan border-pulse relative w-full max-w-md">
               <div className="text-center">
@@ -217,10 +221,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Stats Section - The Numbers Don't Lie */}
-      <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+      <AnimatedSection animation="slideUp" delay={100}>
+        <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
         <div className="container mx-auto max-w-7xl w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[rgb(3,100,200)] text-shadow-glow">
             The Numbers Don't Lie
@@ -296,12 +302,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
-
+        </section>
+      </AnimatedSection>
 
       {/* Core Features Section */}
-      <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+      <AnimatedSection animation="fadeIn" delay={200}>
+        <section className="py-20 bg-white relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
         <div className="container mx-auto max-w-7xl w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[rgb(3,100,200)] text-shadow-glow">
             Core Attributes
@@ -382,11 +388,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
+        </section>
+      </AnimatedSection>
 
       {/* Powered By Section */}
-      <section className="py-20 bg-[rgb(3,100,200)] relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
+      <AnimatedSection animation="slideUp" delay={100}>
+        <section className="py-20 bg-[rgb(3,100,200)] relative w-full max-w-full overflow-x-hidden min-h-[75vh] flex items-center">
         <div className="container mx-auto max-w-7xl w-full">
           {/* POWERED BY */}
           <div className="mb-16">
@@ -561,7 +568,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   )
 }

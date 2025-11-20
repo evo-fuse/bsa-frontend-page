@@ -45,11 +45,11 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
         style={{ overflow: 'visible', transform: 'rotate(-90deg)' }}
       >
         <defs>
-          {/* Bright cyan-blue gradient for filled portion */}
+          {/* Main blue gradient for filled portion */}
           <linearGradient id={`gradient-${label}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00d4ff" stopOpacity="1" />
-            <stop offset="50%" stopColor="#00b8e6" stopOpacity="1" />
-            <stop offset="100%" stopColor="#0099cc" stopOpacity="1" />
+            <stop offset="0%" stopColor="rgb(3, 100, 200)" stopOpacity="1" />
+            <stop offset="50%" stopColor="rgba(3, 100, 200, 0.9)" stopOpacity="1" />
+            <stop offset="100%" stopColor="rgba(3, 100, 200, 0.8)" stopOpacity="1" />
           </linearGradient>
           {/* Strong neon glow filter - multiple blur layers for intense glow */}
           <filter id={`glow-strong-${label}`} x="-50%" y="-50%" width="200%" height="200%">
@@ -113,19 +113,19 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
           background: 'rgba(10, 15, 25, 0.0)',
           boxShadow: `
             inset 0 0 20px rgba(0, 0, 0, 0.0),
-            0 0 30px rgba(0, 212, 255, 0.2)
+            0 0 30px rgba(3, 100, 200, 0.2)
           `,
           margin: `${strokeWidth + 2}px`,
         }}
       >
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center">
-          {/* Number - bright glowing cyan-blue */}
+          {/* Number - bright glowing main blue */}
           <div 
             className="text-7xl md:text-8xl font-bold mb-3 leading-none"
             style={{
-              color: '#00d4ff',
-              textShadow: '0 0 30px rgba(0, 212, 255, 1), 0 0 60px rgba(0, 212, 255, 0.9), 0 0 90px rgba(0, 212, 255, 0.6)',
+              color: 'rgb(3, 100, 200)',
+              textShadow: '0 0 30px rgba(3, 100, 200, 1), 0 0 60px rgba(3, 100, 200, 0.9), 0 0 90px rgba(3, 100, 200, 0.6)',
               fontFamily: 'system-ui, -apple-system, sans-serif',
               transition: 'all 0.3s ease',
             }}
@@ -133,12 +133,12 @@ const TimeUnit = ({ value, label, maxValue }: TimeUnitProps) => {
             {String(value).padStart(2, '0')}
           </div>
           
-          {/* Label - lighter grey with subtle cyan glow */}
+          {/* Label - lighter grey with subtle blue glow */}
           <div 
             className="text-sm md:text-base uppercase tracking-widest font-semibold"
             style={{
               color: 'rgba(200, 220, 240, 0.8)',
-              textShadow: '0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3)',
+              textShadow: '0 0 10px rgba(3, 100, 200, 0.5), 0 0 20px rgba(3, 100, 200, 0.3)',
               letterSpacing: '0.15em',
             }}
           >

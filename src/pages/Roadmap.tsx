@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { HiUsers, HiChatAlt2, HiCog, HiTrendingUp, HiGlobe, HiLightningBolt, HiSparkles } from 'react-icons/hi'
 import PageHeader from '../components/PageHeader'
+import AnimatedSection from '../components/AnimatedSection'
 
 interface RoadmapItemProps {
   milestone: {
@@ -346,7 +347,8 @@ const Roadmap = () => {
         subtitle="Our journey towards building the future of AI-powered blockchain networks"
         height="396px"
       />
-      <div className="container mx-auto max-w-7xl px-6">
+      <AnimatedSection animation="fadeIn">
+        <div className="container mx-auto max-w-7xl px-6">
         {/* Vertical Layout with Hover Sidebars */}
         <div className="flex flex-col items-start py-16 space-y-9 md:space-y-12">
           {milestones.map((milestone, index) => {
@@ -374,7 +376,8 @@ const Roadmap = () => {
             </button>
           </div>
         </div>
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }
